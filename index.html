@@ -70,7 +70,7 @@
         const key = params.get('key');
 
         $(function () {
-            $('form').submit(function () {
+            $('form').submit(function (event) {
                 const name    = $('input[name="name"]').val();
                 const bangou = $('input[name="bangou"]').val();
                 const shushoujou  = $('input[name="shushoujou"]').val();
@@ -78,6 +78,8 @@
                 const hatunetu = $('input[name="hatunetu"]').val();
                 const msg = `${name}\n${bangou}\n${shushoujou}\n${keika}\n${hatunetu}`;
                 sendText(msg);
+                event.preventDefault();
+                $.post( 'https://script.google.com/macros/s/AKfycbzZBE9BxG9RrDPdlf8P429XZLsjZLCb5tN1mAErvOglTFERU8jQjS_OXuFO8UxeQZfl/exec', $('form').serialize() );
                 return false;
             });
         });
